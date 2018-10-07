@@ -1,11 +1,13 @@
 ## Alles ##
 
-SELECT tconst, titleType, primaryTitle, startYear, endYear, avgRating, numVotes
-FROM title.basics
-LEFT JOIN title.ratings
-ON title.basics.tconst = title.ratings.tconst
-ORDER BY title.basics.titleType ASC
-
+CREATE TABLE basics.ratings
+AS (
+	SELECT tconst, titleType, primaryTitle, startYear, endYear, avgRating, numVotes
+	FROM title.basics
+	LEFT JOIN title.ratings
+	ON title.basics.tconst = title.ratings.tconst
+	ORDER BY title.basics.titleType ASC
+);
 ------
 
 SELECT tconst, nconst, category, characters
@@ -21,18 +23,24 @@ ORDER BY nconst ASC
 
 ## Movies ##
 
-SELECT tconst, titleType, primaryTitle, startYear, endYear, avgRating, numVotes
-FROM title.basics
-LEFT JOIN title.ratings
-ON title.basics.tconst = title.ratings.tconst
-WHERE titleType = "movie"
-ORDER BY title.basics.titleType ASC
+CREATE TABLE basics.ratings.movies
+AS (
+	SELECT tconst, titleType, primaryTitle, startYear, endYear, avgRating, numVotes
+	FROM title.basics
+	LEFT JOIN title.ratings
+	ON title.basics.tconst = title.ratings.tconst
+	WHERE titleType = "movie"
+	ORDER BY title.basics.titleType ASC
+);
 
 ## Series ##
 
-SELECT tconst, titleType, primaryTitle, startYear, endYear, avgRating, numVotes
-FROM title.basics
-LEFT JOIN title.ratings
-ON title.basics.tconst = title.ratings.tconst
-WHERE titleType = "tvseries"
-ORDER BY title.basics.titleType ASC
+CREATE TABLE basics.ratings.tvseries
+AS (
+	SELECT tconst, titleType, primaryTitle, startYear, endYear, avgRating, numVotes
+	FROM title.basics
+	LEFT JOIN title.ratings
+	ON title.basics.tconst = title.ratings.tconst
+	WHERE titleType = "tvseries"
+	ORDER BY title.basics.titleType ASC
+);
