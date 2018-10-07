@@ -1,0 +1,38 @@
+## Alles ##
+
+SELECT tconst, titleType, primaryTitle, startYear, endYear, avgRating, numVotes
+FROM title.basics
+LEFT JOIN title.ratings
+ON title.basics.tconst = title.ratings.tconst
+ORDER BY title.basics.titleType ASC
+
+------
+
+SELECT tconst, nconst, category, characters
+FROM title.principles
+WHERE category = "actor" OR category = "actress"
+ORDER BY tconst ASC
+
+------
+
+SELECT nconst, primaryName, deathYear, knownForTitles
+FROM name.basics
+ORDER BY nconst ASC
+
+## Movies ##
+
+SELECT tconst, titleType, primaryTitle, startYear, endYear, avgRating, numVotes
+FROM title.basics
+LEFT JOIN title.ratings
+ON title.basics.tconst = title.ratings.tconst
+WHERE titleType = "movie"
+ORDER BY title.basics.titleType ASC
+
+## Series ##
+
+SELECT tconst, titleType, primaryTitle, startYear, endYear, avgRating, numVotes
+FROM title.basics
+LEFT JOIN title.ratings
+ON title.basics.tconst = title.ratings.tconst
+WHERE titleType = "tvseries"
+ORDER BY title.basics.titleType ASC
