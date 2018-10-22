@@ -106,6 +106,7 @@ venv.bak/
 # dataset folders
 us-baby-names/
 IMDB/
+IMDB_new/
 
 # metadata
 metastore_db/
